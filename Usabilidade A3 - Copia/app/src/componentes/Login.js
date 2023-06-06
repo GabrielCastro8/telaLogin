@@ -35,9 +35,17 @@ function Login(){
         }
     };
 
+    const handleLogout = async(e) => {
+        e.preventDefault();
+        setUser(null);
+        setError('');
+    };
+
     return(
       <div className="login-form-wrap">
-        
+      {user == null? (  
+
+      <div>
       <h2>Login</h2>
       <form className="login-form">
         <input type="email" 
@@ -57,6 +65,18 @@ function Login(){
             onClick={(e) => handleLogin(e)}>Login</button>
       </form>
       <p>{error}</p>
+
+      </div>
+      ) : (
+        <div>
+            <h2>Voce foi logado {user.name}</h2>
+            <button type = "button" 
+                    className= 'btn-login'
+                    onClick={(e) => handleLogout(e)}>
+                    Logout    
+            </button>
+        </div>
+      )}
     </div>
     );
 }
